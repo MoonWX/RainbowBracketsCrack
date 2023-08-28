@@ -17,7 +17,11 @@ public class RainbowBracketsPlugin implements PluginEntry {
     public void init(Environment environment, PluginConfig config) {
         transformers.add(new HideJaNetfilterTransformer());
         transformers.add(new LicensingFacadeTransformer()
-                .lie("PRAINBOWBRACKET"));
+                // https://plugins.jetbrains.com/plugin/10080-rainbow-brackets
+                .lie("PRAINBOWBRACKET")
+                // https://plugins.jetbrains.com/plugin/7499-gittoolbox
+                .lie("PGITTOOLBOX")
+        );
     }
 
     @Override

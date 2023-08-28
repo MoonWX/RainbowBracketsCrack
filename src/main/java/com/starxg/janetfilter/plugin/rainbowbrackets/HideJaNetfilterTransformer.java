@@ -13,7 +13,7 @@ public class HideJaNetfilterTransformer implements MyTransformer {
 
     @Override
     public String getHookClassName() {
-        return new String(new byte[]{-31, -66, -69, -32, -86, -75},
+        return new String(new byte[]{-31, -69, -107, -32, -70, -78},
                 StandardCharsets.UTF_8);
     }
 
@@ -24,8 +24,14 @@ public class HideJaNetfilterTransformer implements MyTransformer {
         pool.appendSystemPath();
         final CtClass clazz = pool.makeClass(new ByteArrayInputStream(classBytes));
 
-        clazz.getDeclaredMethod(new String(new byte[]{-32, -82, -121, -31, -66, -72}, StandardCharsets.UTF_8))
+        clazz.getDeclaredMethod(new String(new byte[]{-38, -120, -45, -94}, StandardCharsets.UTF_8))
                 .insertBefore("if(true)return false;");
+
+        clazz.getDeclaredMethod(new String(new byte[]{-31, -125, -88, -46, -78}, StandardCharsets.UTF_8))
+                .insertBefore("if(true)return false;");
+
+        clazz.getDeclaredMethod(new String(new byte[]{-32, -92, -103, -47, -71}, StandardCharsets.UTF_8))
+                .insertBefore("if(true) return false;");
 
         classBytes = clazz.toBytecode();
         clazz.detach();
